@@ -3,7 +3,7 @@ package sef.module4.activity;
 /**
  * This class represents a playing card 
  * 
- * @author John Doe
+ * @author Anton Kokhanchik
  *
  */
 
@@ -48,7 +48,8 @@ public class PlayingCard {
 	
 	
 	//TODO #1: Write an instance variables that will handle the Integer value of number and suit.   
-	
+	int number;
+	int suit;
 	//END TODO #1
 	
 	
@@ -57,7 +58,14 @@ public class PlayingCard {
 		//TODO #2: Write code that will filter number and suit with the range provided above.
 		// Assign the number and suit argument to instance variable respectively
 		// If the arguments were not filter, make a code that will assign instance variables to a JOKER value
-		
+		if (number > 13 || number <= 0 || suit > 4 || suit <= 0) {
+			this.number = JOKER;
+			this.suit = JOKER;
+		}
+		else {
+			this.number = number;
+			this.suit = suit;
+		}
 		//END TODO #2
 		
 	
@@ -72,7 +80,8 @@ public class PlayingCard {
 
 		//TODO #3: Make an instance of JOKER playing card
 		// Assign instance variable to a JOKER value
-		
+		number = JOKER;
+		suit = JOKER;
 		//END TODO #3
 		
 		
@@ -90,10 +99,10 @@ public class PlayingCard {
 		
 		//TODO #4: Return the Integer value of the playing card
 		// Return the value of current value of the number 
-		
+		return number;
 		//END TODO #4
 	
-		return 0;
+		//return 0;
 	}
 
 
@@ -107,10 +116,10 @@ public class PlayingCard {
 
 		//TODO #5: Return the Integer value of the playing card
 		// Return the value of current value of the suit 
-		
+		return suit;
 		//END TODO #5
 
-		return 0;
+		//return 0;
 	}
 
 
@@ -127,9 +136,39 @@ public class PlayingCard {
 		// Provide single space between number-of and of-suit.
 		// It will be easier if a switch-case statement is use in the code. 
 		// Make a code that will return the String value of JOKER if the default value was chosen
-		
+		if (number == JOKER || suit == JOKER)
+			return "JOKER";
+
+		String snum;
+		switch (number){
+			case ACE: snum = "ACE"; break;
+			case TWO: snum = "TWO"; break;
+			case THREE: snum = "THREE"; break;
+			case FOUR: snum = "FOUR"; break;
+			case FIVE: snum = "FIVE"; break;
+			case SIX: snum = "SIX"; break;
+			case SEVEN: snum = "SEVEN"; break;
+			case EIGHT: snum = "EIGHT"; break;
+			case NINE: snum = "NINE"; break;
+			case TEN: snum = "TEN"; break;
+			case JACK: snum = "JACK"; break;
+			case QUEEN: snum = "QUEEN"; break;
+			case KING: snum = "KING"; break;
+			default: snum = "JOKER";
+		}
+
+		String ssuit;
+		switch (suit){
+			case SPADES: ssuit = "SPADES"; break;
+			case HEARTS: ssuit = "HEARTS"; break;
+			case DIAMONDS: ssuit = "DIAMONDS"; break;
+			case CLUBS: ssuit = "CLUBS"; break;
+			default: ssuit = "JOKER";
+		}
+
+		return snum + " of " + ssuit;
 		//END TODO #6
 		
-		return "";
+		//return "";
 	}
 }
