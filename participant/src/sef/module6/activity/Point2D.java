@@ -1,7 +1,7 @@
 package sef.module6.activity;
 
 /**
- * @author John Doe
+ * @author Anton Kokhanchik
  * 
  * This interface is a representation of a point in a 2D plane.  The point's
  * location is represented by an {x,y} pair representing the coordinates along the
@@ -13,7 +13,7 @@ public interface Point2D {
 	 *  Finds the distance between this point object and the passed coordinates (x2,y2) of a second point 
 	 * 
 	 * @param  x2 is the point coordinate along the x-axis 
-	 *         y2 is the point coordinate along the y-axis 
+	 * @param  y2 is the point coordinate along the y-axis
 	 *         
 	 * @return the calculated distance between the two points as a double
 	 */
@@ -65,16 +65,16 @@ public interface Point2D {
 	 * @param x coordinate of the point along the x-axis
 	 * @param y coordinate of the point along the y-axis
 	 */
-	public void move(double x2, double y2);
+	public void move(double x, double y);
 	
 	/**
 	 * Translates the location (x,y) such that the new 
 	 * location represented is (x+x2, y+y2)
 	 * 
-	 * @param x2 the x-axis delta
-	 * @param y2 the y-axis delta
+	 * @param dx the x-axis delta
+	 * @param dy the y-axis delta
 	 */
-	public void translate(double x2, double y2);
+	public void translate(double dx, double dy);
 	
 	/**
 	 * Compares if it is equal to the coordinates specified in the parameter
