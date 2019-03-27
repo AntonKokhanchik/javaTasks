@@ -7,7 +7,7 @@ import java.util.Calendar;
  * this currency implementation requires that the value and the name of the denomination
  * must be true in order to be considered equal.
  * 
- * @author John Doe
+ * @author Anton Kokhanchik
  *
  */
 public class CurrencyImpl implements Currency {
@@ -34,28 +34,32 @@ public class CurrencyImpl implements Currency {
 	 * @see sef.module6.activity.Currency#getValue()
 	 */
 	public float getValue() {
-		return 1;
+		return value;
 	}
 
 	/* (non-Javadoc)
 	 * @see sef.module6.activity.Currency#getDenomination()
 	 */
 	public Denomination getDenomination() {
-		return null;
+		return new DenominationImpl(denomination.getName(), denomination.getDescription(),
+				denomination.getSymbol());
 	}
 
 	/* (non-Javadoc)
 	 * @see sef.module6.activity.Currency#getCreateDate()
 	 */
 	public Calendar getCreateDate() {
-		return null;
+			return (Calendar)createDate.clone();
 	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "";
+		return "Currency:\n" +
+                denomination + "\n" +
+                "value: " + value + "\n" +
+                "created " + createDate;
 	}
 
 	
@@ -63,7 +67,13 @@ public class CurrencyImpl implements Currency {
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object o) {
-		
+		if (this.getClass() != o.getClass())
+			return false;
+
+		Currency to = (Currency)o;
+		if (value == to.getValue() && denomination.equals(to.getDenomination()))
+			return true;
+
 		return false;
 	}
 
