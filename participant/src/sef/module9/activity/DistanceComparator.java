@@ -8,7 +8,7 @@ import java.util.Comparator;
  * number.  If the two parameters are of the same distance, it will return 0.  If 
  * the first parameter is farther away than the second, it will return a postive number
  * 
- * @author John Doe
+ * @author Anton Kokhanchik
  *
  */
 public class DistanceComparator implements Comparator<RadarContact>{
@@ -18,7 +18,10 @@ public class DistanceComparator implements Comparator<RadarContact>{
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	public int compare(RadarContact c1, RadarContact c2) {
-		
-		return 1;
+		if (c1.getDistance() > c2.getDistance())
+			return 1;
+		if (c1.getDistance() < c2.getDistance())
+			return -1;
+		return 0;
 	}
 }
