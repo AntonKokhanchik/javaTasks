@@ -21,17 +21,21 @@ public class Notepad implements TextEditor {
 	public void saveAs(String text) {
 		System.out.println("Please, enter a name of file where the text will be saved");
 		String name = requestArgs();
+
+		String path = System.getProperty("user.home") + "\\Desktop\\";
+		System.out.println("Please, enter a path where the file will be created (optional otherwise it" +
+				"will be Desktop)");
+
+		String typedPath = requestArgs();
 		
-		System.out.println("Please, enter a path where the file will be created (optional)");
-		String where = requestArgs();
-		
-		String path = "C:\\workspace\\";
-		if (where != null && !where.isEmpty()) {
+		//String path = "C:\\workspace\\";
+
+		if (typedPath != null && !typedPath.isEmpty()) {
 			
-			if (where.lastIndexOf("\\") < 0) 
-				where = where + "\\";
+			if (typedPath.lastIndexOf("\\") < 0)
+				typedPath = typedPath + "\\";
 			
-			path = where;
+			path = typedPath;
 		}
 		
 		try {
@@ -44,11 +48,13 @@ public class Notepad implements TextEditor {
 			output.write(text.toString());
 			output.flush();
 			output.close();
+
+			System.out.println("Your file was saved");
 		} catch (IOException e) {
+			System.out.println("Error");
+
 			e.printStackTrace();
 		}
-		
-		System.out.println("Your file was saved");
 	}
 
 	@Override
@@ -57,18 +63,16 @@ public class Notepad implements TextEditor {
 		
 		StringBuilder text = new StringBuilder();
 		
-		String line = "";
-		
-		while(!line.equals("END")){
+		String line;
+
+		while(true){
 			line = requestArgs();
-			
-			text.append(line + System.lineSeparator());
-			
-			if (line.equals("END")) {
-				System.out.println("The End");
-			} else {
-				System.out.println("You typed: " + line);
+
+			if (!line.equals("END")) {
 				text.append(line + System.lineSeparator());
+			} else {
+				System.out.println("The End");
+				break;
 			}
 		}
 		
