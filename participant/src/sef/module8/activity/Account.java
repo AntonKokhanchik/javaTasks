@@ -2,15 +2,15 @@ package sef.module8.activity;
 
 
 /**
- * Thsi class represents a simple representation of an account encapsulating
+ * This class represents a simple representation of an account encapsulating
  * a name 
  * 
- * @author John Doe
+ * @author Anton Kokhanchik
  *
  */
 public class Account {
 
-
+	private String name;
 
 	/**
 	 * Creates an Account object with the specified name.  If the accout name
@@ -21,8 +21,12 @@ public class Account {
 	 */
 	public  Account(String accountName) throws AccountException{
 			
-			
-			
+			if(accountName.length() < 4)
+				throw new AccountException(AccountException.NAME_TOO_SHORT, accountName);
+			if(!(accountName.matches(".*\\w.*") && accountName.matches(".*\\d.*")))
+				// not (contains word and contains digit)
+				throw new AccountException(AccountException.NAME_TOO_SIMPLE, accountName);
+			name  = accountName;
 	}
 	
 	
@@ -32,6 +36,6 @@ public class Account {
 	 * @return the account name
 	 */
 	public String getName(){
-		return "";
+		return name;
 	}
 }
